@@ -1,0 +1,31 @@
+server:
+  port: 8222
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      mvc:
+        routes:
+          - id: users
+            uri: http://localhost:8090
+            predicates:
+              - Path=/user/**
+          - id: ftmodel
+            uri: http://localhost:5000
+            predicates:
+              - Path=/**
+
+  application:
+    name: gateway
+  config:
+    import: optional:configserver:http://localhost:8888

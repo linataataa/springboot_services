@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: authentication_server
+  config:
+    import: optional:configserver:http://localhost:8888
+  data:
+    #data source...
+    mongodb:
+      uri: mongodb+srv://hyfz:GMtRCypcbFIf4Fu5@cluster0.3bd3o.mongodb.net/DL?retryWrites=true&w=majority
+      host: localhost
+      port: 27017
+  cloud:
+    compatibility-verifier:
+      enabled: false
+  jackson:
+    default-property-inclusion: NON_NULL
+  jmx:
+    enabled: false
+
+
+#config within eureka the discovery server...
+server:
+  port: 8090
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
