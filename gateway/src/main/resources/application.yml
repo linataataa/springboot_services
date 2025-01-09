@@ -11,6 +11,9 @@ eureka:
 spring:
   cloud:
     gateway:
+      httpclient:
+        connect-timeout: 1000000 # Connection timeout in milliseconds (1000 seconds)
+        response-timeout: 600s
       discovery:
         locator:
           enabled: true
@@ -23,9 +26,17 @@ spring:
           - id: ftmodel
             uri: http://localhost:5000
             predicates:
-              - Path=/**
+              - Path=/ft/**
+          - id: ai_gen
+            uri: http://localhost:5001
+            predicates:
+              - Path=/ai/**
+
 
   application:
     name: gateway
   config:
     import: optional:configserver:http://localhost:8888
+
+
+
