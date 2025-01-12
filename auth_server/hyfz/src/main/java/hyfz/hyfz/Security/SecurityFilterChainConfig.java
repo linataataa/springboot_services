@@ -38,6 +38,7 @@ public class SecurityFilterChainConfig {
                         (auth) ->
                                 auth
                                         .requestMatchers("/user/paginate").authenticated()
+                                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                                         .anyRequest().permitAll()
                 )
                 .authenticationProvider(authenticationProvider)
