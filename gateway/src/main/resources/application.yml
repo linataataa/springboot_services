@@ -27,10 +27,16 @@ spring:
             uri: http://localhost:5000
             predicates:
               - Path=/ft/**
+          - id: gar_gen
+            uri: http://localhost:5002
+            predicates:
+              - Path=/rag/**
           - id: ai_gen
             uri: http://localhost:5001
             predicates:
               - Path=/ai/**
+
+
 
 
   application:
